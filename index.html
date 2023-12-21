@@ -7,6 +7,10 @@
     <meta name="description" content="Получите до 15% бонусов к рекламному бюджету с сервисом Kotbot.">
     <link rel="stylesheet" href="style.css">
     <!-- Добавьте ссылки на CSS файлы и другие SEO тэги здесь -->
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
 </head>
 <body>
 
@@ -38,7 +42,7 @@
     </div>
 
     <div class="container description-container">
-        <section class="how-it-works">
+        <section class="how-it-works" id="how">
             <h2 class="how-it-works__title">Как это работает?</h2>
             <p class="how-it-works__description">
                 Вы пополняете рекламный кабинет, <br/>
@@ -48,7 +52,7 @@
             <img src="https://static.tildacdn.com/tild3365-6231-4736-b635-336136656464/Frame_41.svg" alt="">
         </section>
 
-        <section class="kot-bonus">
+        <section class="kot-bonus" id="bonus">
             <h2 class="kot-bonus__title">Что такое kot-бонусы?</h2>
             <p class="kot-bonus__description">
                 Это дополнительный баланс рекламного кабинета, <br/>
@@ -58,7 +62,7 @@
             <img src="https://static.tildacdn.com/tild3631-6465-4836-b466-366466643830/Group_67_2.svg" alt="">
         </section>
 
-        <section class="bonuses-origin">
+        <section class="bonuses-origin" id="origin">
             <h2 class="bonuses-origin__title">Так, а откуда бонусы?</h2>
             <p class="bonuses-origin__description">
                 С нами работают 3500 таргетологов, <br/>
@@ -68,19 +72,14 @@
         </section>
     </div>
 
-    <div class="container promo-container">
+    <div class="container skills-container" id="skills">
         <section class="kotbot-description">
             <h2 class="kotbot-description__title">Это - kotbot. Удобный сервис</h2>
-            <p class="kotbot-description__description">
-<!--                Пополнение рекламного бюджета <br/>-->
-<!--                который помогает с маркировокой <br/>-->
-<!--                который добавляет бонусы <br/>-->
-                А что еще?
-            </p>
+            <p class="kotbot-description__description" id="writer"></p>
         </section>
     </div>
 
-    <div class="container referral-container">
+    <div class="container referral-container" id="referral">
         <section class="referral-program">
             <h2 class="referral-program__title">Реферальная программа</h2>
             <p class="referral-program__description">
@@ -89,7 +88,7 @@
             </p>
             <div class="referral-program__programs">
                 <div class="referral-program__programs__replenishment">
-                    <img src="https://static.tildacdn.com/tild6331-3038-4235-b436-313433663664/Union_1.svg" alt="">
+                    <img src="https://static.tildacdn.com/tild6331-3038-4235-b436-313433663664/Union_1.svg" alt="" draggable="false">
                     <span>
                         <b>500 руб. на баланс</b> вам и другу <br/>
                         к первому пополнению бюджета
@@ -108,8 +107,7 @@
         </section>
     </div>
 
-
-    <div class="container promo-container">
+    <div class="container tour-container" id="tour">
         <section class="personal-tour">
             <h2 class="personal-tour__title">Хочешь персональную <br/> экскурсию по сервису?</h2>
             <p class="personal-tour__description">Оставь заявку и наш человек свяжется с тобой</p>
@@ -122,7 +120,7 @@
 <footer>
     <div class="footer">
         <div class="footer__copyright">
-            <span>© Kotbot, 2018-2023 Единый кабинет для рекламных бюджетов. Сервис проекта SkillHub</span>
+            <span>© Kotbot, 2018-2023 Единый кабинет для рекламных бюджетов. <br/>Сервис проекта SkillHub</span>
             <img src="https://static.tildacdn.com/tild3534-3735-4331-b334-333838643039/Frame_68.svg" alt="">
         </div>
         <div class="footer__politica">
@@ -133,9 +131,12 @@
             <a href="#">Написать нам</a>
             <a href="#"><img src="https://static.tildacdn.com/tild3962-3632-4336-b530-363462643837/Frame_41_1.svg" alt=""></a>
         </div>
-        <div class="footer__promocode">
-            <img src="https://static.tildacdn.com/tild3030-3535-4261-b163-653663366437/_366_1.svg" alt="">
-        </div>
+    </div>
+
+    <div class="promocode">
+        <span id="code" class="hide">Погладь кота</span>
+        <img class="promocode__stick" src="https://static.tildacdn.com/tild3038-3061-4533-b334-666534343463/Subtract.svg" alt="">
+        <button onclick="getPromo()"><img src="https://static.tildacdn.com/tild3030-3535-4261-b163-653663366437/_366_1.svg" alt=""></button>
     </div>
 </footer>
 
@@ -147,7 +148,7 @@
 </div>
 
 <div class="progress">
-    <span></span>
+    <span id="progress-bar"></span>
 </div>
 
 <script src="script.js"></script>
