@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', function() {
             howPlayed = false
         }
         if (!skillsPlayed) skillsPlayed = checkAnimation($kotbot_skills,'transform', 'scale(1)', type)
-        if (!referralPlayed) referralPlayed = checkAnimation($kotbot_referral)
+        if (!referralPlayed) referralPlayed = checkAnimation($kotbot_referral,'transform', 'scale(1)')
     });
 
 });
