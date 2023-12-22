@@ -6,11 +6,6 @@
     <title>Рекламный сервис</title>
     <meta name="description" content="Получите до 15% бонусов к рекламному бюджету с сервисом Kotbot.">
     <link rel="stylesheet" href="style.css">
-    <!-- Добавьте ссылки на CSS файлы и другие SEO тэги здесь -->
-    <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
 </head>
 <body>
 
@@ -32,7 +27,7 @@
                 <img class="promo__title__yandex" src="https://static.tildacdn.com/tild3430-6337-4065-b639-353939386262/Frame_67.svg" alt="">
             </h1>
             <p class="promo__description">пополняй рекламные кабинеты и зарабатывай больше</p>
-            <button class="promo__create-account-button">Создать аккаунт через VK</button>
+            <button class="promo__create-account-button" onclick="return window.oneTapCallback(this)">Создать аккаунт через VK</button>
         </section>
         <div class="promo-container__cat">
             <img src="https://static.tildacdn.com/tild3130-3936-4330-b462-333763393362/Group_42_1.svg" alt="">
@@ -42,76 +37,79 @@
     </div>
 
     <div class="container description-container">
-        <section class="how-it-works" id="how">
-            <h2 class="how-it-works__title">Как это работает?</h2>
-            <p class="how-it-works__description">
+        <section class="how-it-works">
+            <h2 class="how-it-works__title animate-description">Как это работает?</h2>
+            <p class="how-it-works__description animate-description">
                 Вы пополняете рекламный кабинет, <br/>
                 а мы доначисляем вам бонусы. <br/>
                 От хорошего кота хорошему человеку
             </p>
-            <img src="https://static.tildacdn.com/tild3365-6231-4736-b635-336136656464/Frame_41.svg" alt="">
+            <img class="animate-description" src="https://static.tildacdn.com/tild3365-6231-4736-b635-336136656464/Frame_41.svg" alt="">
         </section>
 
-        <section class="kot-bonus" id="bonus">
-            <h2 class="kot-bonus__title">Что такое kot-бонусы?</h2>
-            <p class="kot-bonus__description">
+        <section class="kot-bonus">
+            <h2 class="kot-bonus__title animate-description">Что такое kot-бонусы?</h2>
+            <p class="kot-bonus__description animate-description">
                 Это дополнительный баланс рекламного кабинета, <br/>
                 который вы получаете за то, что пользуетесь нашим сервисом. <br/>
                 Кстати, 1 балл = 1 рублю
             </p>
-            <img src="https://static.tildacdn.com/tild3631-6465-4836-b466-366466643830/Group_67_2.svg" alt="">
+            <img class="animate-description" src="https://static.tildacdn.com/tild3631-6465-4836-b466-366466643830/Group_67_2.svg" alt="">
         </section>
 
         <section class="bonuses-origin" id="origin">
-            <h2 class="bonuses-origin__title">Так, а откуда бонусы?</h2>
-            <p class="bonuses-origin__description">
+            <h2 class="bonuses-origin__title animate-description">Так, а откуда бонусы?</h2>
+            <p class="bonuses-origin__description animate-description">
                 С нами работают 3500 таргетологов, <br/>
                 что позволяет получать лучшие цены от рекламных площадок
             </p>
-            <img src="https://static.tildacdn.com/tild6665-6538-4165-a533-623237333064/Group_64.svg" alt="">
+            <img class="animate-description" src="https://static.tildacdn.com/tild6665-6538-4165-a533-623237333064/Group_64.svg" alt="">
         </section>
     </div>
 
-    <div class="container skills-container" id="skills">
+    <div class="container skills-container animate-scale">
         <section class="kotbot-description">
             <h2 class="kotbot-description__title">Это - kotbot. Удобный сервис</h2>
             <p class="kotbot-description__description" id="writer"></p>
         </section>
     </div>
 
-    <div class="container referral-container" id="referral">
-        <section class="referral-program">
-            <h2 class="referral-program__title">Реферальная программа</h2>
-            <p class="referral-program__description">
-                Приводите друзей и получайте бонусы <br/>
-                от их пополнений
-            </p>
-            <div class="referral-program__programs">
-                <div class="referral-program__programs__replenishment">
-                    <img src="https://static.tildacdn.com/tild6331-3038-4235-b436-313433663664/Union_1.svg" alt="" draggable="false">
-                    <span>
-                        <b>500 руб. на баланс</b> вам и другу <br/>
-                        к первому пополнению бюджета
-                    </span>
+    <div class="container background-referral">
+        <div class="container referral-container animate-scale">
+            <section class="referral-program">
+                <h2 class="referral-program__title">Реферальная программа</h2>
+                <p class="referral-program__description">
+                    Приводите друзей и получайте бонусы <br/>
+                    от их пополнений
+                </p>
+                <div class="referral-program__programs">
+                    <div class="referral-program__programs__replenishment">
+                        <img src="https://static.tildacdn.com/tild6331-3038-4235-b436-313433663664/Union_1.svg" alt=""
+                             draggable="false">
+                        <span>
+                                <b>500 руб. на баланс</b> вам и другу <br/>
+                                к первому пополнению бюджета
+                            </span>
+                    </div>
+                    <div class="referral-program__programs__percent">
+                        <img src="https://static.tildacdn.com/tild3663-3239-4562-b134-623834383862/Group_40.svg" alt="">
+                        <span>
+                                до <b>15% в месяц</b> <br/>
+                                от бюджета партнёров
+                            </span>
+                    </div>
                 </div>
-                <div class="referral-program__programs__percent">
-                    <img src="https://static.tildacdn.com/tild3663-3239-4562-b134-623834383862/Group_40.svg" alt="">
-                    <span>
-                        до <b>15% в месяц</b> <br/>
-                        от бюджета партнёров
-                    </span>
-                </div>
-            </div>
-            <!-- Содержимое раздела -->
-            <button class="referral-program__partner-button">Стать партнером</button>
-        </section>
+                <!-- Содержимое раздела -->
+                <button class="referral-program__partner-button" onclick="return window.oneTapCallback(this)">Стать партнером</button>
+            </section>
+        </div>
     </div>
 
-    <div class="container tour-container" id="tour">
+    <div class="container tour-container animate-scale">
         <section class="personal-tour">
             <h2 class="personal-tour__title">Хочешь персональную <br/> экскурсию по сервису?</h2>
             <p class="personal-tour__description">Оставь заявку и наш человек свяжется с тобой</p>
-            <button class="personal-tour__application">Оставить заявку</button>
+            <button onclick="window.wantToTalkCallback(this)" class="personal-tour__application">Оставить заявку</button>
         </section>
     </div>
 
@@ -135,8 +133,8 @@
 
     <div class="promocode">
         <span id="code" class="hide">Погладь кота</span>
-        <img class="promocode__stick" src="https://static.tildacdn.com/tild3038-3061-4533-b334-666534343463/Subtract.svg" alt="">
-        <button onclick="getPromo()"><img src="https://static.tildacdn.com/tild3030-3535-4261-b163-653663366437/_366_1.svg" alt=""></button>
+        <img id="orientation" class="promocode__stick" src="https://static.tildacdn.com/tild3038-3061-4533-b334-666534343463/Subtract.svg" alt="">
+        <button id="stroke" onclick="getPromo()"><img src="./assets/images/cat_bottom.svg" alt=""></button>
     </div>
 </footer>
 

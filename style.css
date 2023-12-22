@@ -1,19 +1,12 @@
 @import "assets/museo/stylesheet.css";
-:root {
-  --animate-duration: 10ms;
-  --animate-delay: 2s;
-}
-
 * {
   box-sizing: border-box;
 }
 
 body {
-  font-family: "Arial", sans-serif;
   margin: 0;
   padding: 0;
   position: relative;
-  background-color: #171717;
 }
 
 button,
@@ -114,7 +107,6 @@ main {
 }
 
 .skills-container {
-  overflow: hidden;
   background-color: #171717;
   height: 100vh;
   min-height: 900px;
@@ -123,6 +115,10 @@ main {
 .referral-container {
   padding: 128px 0 134.5px;
   background-color: #ffffff;
+}
+
+.background-referral {
+  background-color: #171717;
 }
 
 .tour-container {
@@ -185,6 +181,9 @@ section {
   font-size: 24px;
   font-family: "Museo Sans Cyrl 300", Arial, sans-serif;
   font-weight: 300;
+}
+.promo__create-account-button:hover {
+  background-color: #0063D4;
 }
 
 .how-it-works__title,
@@ -382,6 +381,7 @@ footer .promocode__stick {
   max-width: 56px;
 }
 footer .promocode button {
+  position: relative;
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
@@ -391,6 +391,8 @@ footer .promocode button {
   cursor: pointer;
 }
 footer .promocode button img {
+  position: relative;
+  vertical-align: middle;
   -webkit-tap-highlight-color: transparent;
   pointer-events: none;
   max-width: 176px;
@@ -778,6 +780,13 @@ footer .promocode button img:active {
 @media (max-width: 640px) {
   header, section, .footer, .hidden-header__content {
     max-width: 480px;
+  }
+  .skills-container {
+    min-height: 320px;
+    height: 45vh;
+  }
+  .kotbot-description {
+    margin-top: 80px;
   }
   footer .promocode {
     margin-right: calc((100% - 480px) / 2 + 20px);
