@@ -1,0 +1,1468 @@
+@import "assets/museo/stylesheet.css";
+
+// Переменные
+$black: #171717;
+$vkBackground: #0278FF;
+$vkBackgroundHover: #0063D4;
+$grey: #f5f5f5;
+
+// Сброс
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+button,
+input,
+select,
+textarea {
+  outline: none;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  color: #000000;
+  text-decoration: none;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+// Шапка
+header {
+  position: absolute;
+  z-index: 2;
+  top: 24px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 37px 0 20px;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  img {
+    margin-bottom: 12px;
+    max-width: 128px;
+  }
+
+  &__login-button {
+    border: 1px #ffffff solid;
+    border-radius: 60px;
+    background-color: transparent;
+    padding: 15.5px 31px;
+    cursor: pointer;
+    text-align: center;
+    color: white;
+    font-size: 16px;
+    font-family: "Museo Sans Cyrl 300", Arial, sans-serif;
+    font-weight: 300;
+
+    &:hover {
+      background-color: #ffffff;
+      color: #000000;
+    }
+  }
+
+}
+
+// Контент сайта
+main {
+  width: 100%;
+  margin: 0;
+}
+
+// Контент-контейнеры
+.container {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.promo-container {
+  background-color: $black;
+  height: 100vh;
+  min-height: 770px;
+
+  &__cat {
+    position: absolute;
+    z-index: 2;
+    //top: calc(100vh - 63.5%);
+    top: 41.6%;
+    right: -237px;
+
+    img {
+      width: 678px;
+    }
+
+  }
+
+}
+
+.description-container {
+  padding: 130px 0;
+  height: 100vh;
+  min-height: 1468px;
+  background-color: #ffffff;
+}
+
+.skills-container {
+  background-color: $black;
+  height: 100vh;
+  min-height: 900px;
+}
+
+.referral-container {
+  padding: 128px 0 134.5px;
+  background-color: #ffffff;
+}
+
+.background-referral {
+  background-color: $black;
+}
+
+.tour-container {
+  background-color: $black;
+  height: 100vh;
+  min-height: 700px;
+}
+
+// Секции
+section {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+// Секция - ПРОМО
+.promo {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+
+  &__title {
+    margin-top: 275px;
+    width: fit-content;
+    position: relative;
+    color: #ffffff;
+    font-size: 70px;
+    line-height: 1.2;
+    font-family: "Museo Sans Cyrl 500", Arial, sans-serif;
+    font-weight: 400;
+
+    img {
+      position: absolute;
+      top: 87px;
+    }
+
+    &__vk {
+      right: -40px;
+    }
+
+    &__yandex {
+      right: -85px;
+    }
+
+  }
+
+  &__description {
+    margin-top: 15px;
+    margin-bottom: 64px;
+    letter-spacing: -0.2px;
+    color: #ffffff;
+    font-size: 24px;
+    line-height: 1.55;
+    font-family: 'Museo Sans Cyrl 300', Arial, sans-serif;
+    font-weight: 300;
+  }
+
+  &__create-account-button {
+    width: fit-content;
+    background: $vkBackground;
+    padding: 15.5px 33.5px;
+    border-radius: 60px;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 24px;
+    font-family: 'Museo Sans Cyrl 300', Arial, sans-serif;
+    font-weight: 300;
+
+    &:hover {
+      background-color: $vkBackgroundHover;
+    }
+  }
+
+}
+
+// Секции - Как это работает, kot-бонусы, источник бонусов
+.how-it-works,
+.kot-bonus,
+.bonuses-origin {
+
+  &__title {
+    width: fit-content;
+    color: $black;
+    font-size: 70px;
+    line-height: 1.2;
+    font-family: 'Museo Sans Cyrl 500', Arial, sans-serif;
+    font-weight: 400;
+  }
+
+  &__description {
+    margin-top: 16px;
+    width: fit-content;
+    color: $black;
+    font-size: 24px;
+    letter-spacing: -0.2px;
+    line-height: 1.55;
+    font-family: 'Museo Sans Cyrl 300', Arial, sans-serif;
+    font-weight: 300;
+  }
+
+  img {
+    display: block;
+    margin-top: 31px;
+  }
+
+}
+
+.how-it-works {
+
+  img {
+    max-width: 131px;
+  }
+
+}
+
+.kot-bonus {
+  margin-top: 132px;
+  margin-bottom: 96px;
+
+  img {
+    max-width: 131px;
+  }
+
+}
+
+.bonuses-origin {
+
+  img {
+    margin-top: 21px;
+    max-width: 601px;
+  }
+
+}
+
+// Секция - описание kotbot
+.kotbot-description {
+  transform: scale(1);
+  //height: 100%;
+  margin-top: 309px;
+
+  &__title, &__description {
+    color: #ffffff;
+    font-size: 70px;
+    font-family: 'Museo Sans Cyrl 500', Arial, sans-serif;
+    font-weight: 400;
+  }
+
+  &__title {
+  }
+
+  &__description {
+    margin-top: 8px;
+  }
+
+}
+
+// Секция - Реферальная программа
+.referral-program {
+  transform: scale(1);
+
+  &__title {
+    color: $black;
+    font-size: 70px;
+    line-height: 1;
+    font-family: 'Museo Sans Cyrl 500', Arial, sans-serif;
+    font-weight: 400;
+  }
+
+  &__description {
+    margin-top: 16px;
+    color: $black;
+    font-size: 24px;
+    letter-spacing: -0.2px;
+    line-height: 1.55;
+    font-family: 'Museo Sans Cyrl 300',Arial,sans-serif;
+    font-weight: 300;
+  }
+
+  &__programs {
+    margin-top: 12px;
+    display: flex;
+    gap: 0 25px;
+
+    &__replenishment,
+    &__percent {
+      padding: 33px;
+      background-color: $grey;
+      border-radius: 32px;
+
+      img {
+
+      }
+
+      span {
+        margin-top: 10px;
+        display: block;
+        color: #000000;
+        font-size: 16px;
+        letter-spacing: -0.1px;
+        line-height: 1.57;
+        font-family: 'Museo Sans Cyrl 300', Arial, sans-serif;
+        font-weight: 300;
+
+        b {
+          font-family: 'Museo Sans Cyrl 900', Arial, sans-serif;
+          font-weight: 900;
+        }
+      }
+
+    }
+
+    &__replenishment {
+
+      img {
+        max-width: 240px;
+      }
+
+      span {
+      }
+
+    }
+
+    &__percent {
+
+      img {
+        max-width: 164px;
+      }
+
+    }
+
+  }
+
+  &__partner-button {
+    margin-top: 30px;
+    padding: 15.5px 30px;
+    background-color: $black;
+    border-radius: 60px;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 24px;
+    letter-spacing: 0.1px;
+    font-family: "Museo Sans Cyrl 300", Arial, sans-serif;
+    font-weight: 300;
+
+    &:hover {
+      background-color: $vkBackground;
+    }
+
+  }
+
+}
+
+// Секция - Персональная экскурсия
+.personal-tour {
+  transform: scale(1);
+  margin-top: 128px;
+
+  &__title {
+    color: #ffffff;
+    font-size: 70px;
+    line-height: 1.2;
+    font-family: 'Museo Sans Cyrl 500', Arial, sans-serif;
+    font-weight: 400;
+  }
+
+  &__description {
+    margin-top: 32px;
+    color: #ffffff;
+    font-size: 24px;
+    letter-spacing: -0.2px;
+    line-height: 1.55;
+    font-family: 'Museo Sans Cyrl 300', Arial, sans-serif;
+    font-weight: 300;
+  }
+
+  &__application {
+    margin-top: 48px;
+    padding: 15.5px 32.5px;
+    background-color: #0278FF;
+    border-radius: 60px;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 24px;
+    font-family: "Museo Sans Cyrl 300", Arial, sans-serif;
+    font-weight: 300;
+
+    &:hover {
+      background-color: $vkBackgroundHover;
+    }
+  }
+
+}
+
+// Футер
+footer {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: transparent;
+
+  .promocode {
+    position: absolute;
+    bottom: 0;
+    //bottom: -4px;
+    right: 0;
+    margin-right: calc((100% - 1200px) / 2);
+
+    span {
+      display: inline-block;
+      position: absolute;
+      opacity: 1;
+      top: -126px;
+      left: -139px;
+      color: #ffffff;
+      font-size: 16px;
+      line-height: 1.55;
+      font-family: 'Museo Sans Cyrl 300', Arial, sans-serif;
+      font-weight: 300;
+    }
+
+    &__stick {
+      opacity: 0.3;
+      top: -65px;
+      left: -91px;
+      position: absolute;
+      max-width: 56px;
+    }
+
+    button {
+      position: relative;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      overflow: hidden;
+      cursor: pointer;
+      img {
+        position: relative;
+        vertical-align: middle;
+        -webkit-tap-highlight-color: transparent;
+        pointer-events: none;
+        max-width: 176px;
+        user-select: none;
+        &:active {
+          background-color: transparent;
+        }
+      }
+    }
+  }
+
+}
+
+.footer {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 37px 40px 20px;
+
+  &__copyright {
+    display: flex;
+    align-items: center;
+    gap: 0 14px;
+
+    span {
+      display: inline-block;
+      letter-spacing: -0.16px;
+      opacity: 0.3;
+      color: #ffffff;
+      font-size: 16px;
+      line-height: 1.55;
+      font-family: 'Museo Sans Cyrl 300', Arial, sans-serif;
+      font-weight: 300;
+    }
+
+    img {
+      max-width: 120px;
+    }
+
+    br {
+      display: none;
+    }
+
+  }
+
+  &__politica {
+
+    a {
+      letter-spacing: -0.1px;
+      margin-right: 6px;
+      display: inline-block;
+      color: #ffffff;
+      font-size: 16px;
+      line-height: 1.55;
+      font-family: 'Museo Sans Cyrl 300',Arial,sans-serif;
+      font-weight: 300;
+    }
+
+  }
+
+  &__reference {
+    margin-top: 18px;
+    display: flex;
+    gap: 0 13px;
+
+    a:first-child {
+      display: inline-block;
+      padding: 8.5px 16px;
+      border: 1px #ffffff solid;
+      border-radius: 99px;
+      color: #ffffff;
+      font-size: 14px;
+      line-height: 1.5;
+      font-family: 'Museo Sans Cyrl 700', Arial, sans-serif;
+      font-weight: 600;
+    }
+
+    a:last-child {
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      background-color: #ffffff;
+
+      img {
+        max-width: 40px;
+      }
+
+    }
+
+  }
+
+}
+
+.hidden-header {
+  position: fixed;
+  z-index: 3;
+  top: -90px;
+  left: 0;
+  right: 0;
+  background-color: $black;
+  transition: top 1s;
+
+  &__content {
+    width: 100%;
+    max-width: 1200px;
+    padding: 18px 37px 18px 20px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    img {
+      margin-bottom: 12px;
+      max-width: 128px;
+    }
+
+    button {
+      border: 1px #ffffff solid;
+      border-radius: 60px;
+      background-color: transparent;
+      padding: 15.5px 31px;
+      cursor: pointer;
+      text-align: center;
+      color: white;
+      font-size: 16px;
+      font-family: "Museo Sans Cyrl 300", Arial, sans-serif;
+      font-weight: 300;
+
+      &:hover {
+        background-color: #ffffff;
+        color: #000000;
+      }
+    }
+
+  }
+
+}
+
+.progress {
+  position: fixed;
+  z-index: 4;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+
+  span {
+    display: block;
+    height: 100%;
+    width: 0;
+    background-color: #ffffff;
+    transition: width 1s;
+  }
+
+}
+
+.hide {
+  top: -101px !important;
+  opacity: 0.3 !important;
+}
+
+// Адаптивный дизайн
+@media (max-width: 1300px) {
+
+  .promo-container {
+    &__cat {
+      top: 57%;
+    }
+  }
+
+  footer .promocode {
+    margin-right: calc((100% - 1200px) / 2 + 37px);
+  }
+
+}
+
+@media (max-width: 1200px) {
+
+  header, section, .footer, .hidden-header__content {
+    max-width: 960px;
+  }
+
+  footer .promocode {
+    margin-right: calc((100% - 960px) / 2);
+  }
+
+  .footer {
+    &__copyright {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  .promo-container {
+    &__cat {
+      top: 43%;
+
+      img {
+        width: 563px;
+      }
+    }
+  }
+
+  .promo {
+    &__title {
+      margin-top: 195px;
+    }
+  }
+
+
+}
+
+@media (max-width: 1024px) {
+
+  //------------------------
+  .navigation {
+
+    img {
+      margin-bottom: 0;
+      max-width: 110px;
+    }
+
+    &__login-button {
+      padding: 12px 28px;
+    }
+
+  }
+
+  //---------------------
+  .promo-container,
+  .skills-container,
+  .referral-container,
+  .tour-container {
+    min-height: 510px;
+  }
+
+  //----------------
+  .promo-container {
+    &__cat {
+      top: 28%;
+
+      img {
+        width: 490px;
+      }
+    }
+  }
+
+  .promo {
+
+    &__title {
+      margin-top: 122px;
+      font-size: 50px;
+      img {
+        top: 50px;
+      }
+    }
+
+    &__description {
+      font-size: 18px;
+    }
+
+    &__create-account-button {
+      font-size: 18px;
+    }
+
+  }
+
+  //---------------
+  .description-container {
+    height: unset;
+    min-height: 100vh;
+    padding: 90px 0;
+  }
+
+  .how-it-works,
+  .kot-bonus,
+  .bonuses-origin {
+    &__title {
+      font-size: 50px;
+    }
+    &__description {
+      font-size: 18px;
+    }
+  }
+
+  .how-it-works {
+    img {
+      max-width: 110px;
+    }
+  }
+
+  .kot-bonus {
+    margin-top: 80px;
+    margin-bottom: 80px;
+    img {
+      max-width: 113px;
+    }
+  }
+
+  .bonuses-origin {
+    img {
+      max-width: 469px;
+    }
+  }
+
+  //------------------------
+  .kotbot-description {
+    margin-top: 167px;
+
+    &__title, &__description {
+      font-size: 50px;
+    }
+
+    &__description {
+      margin-top: 8px;
+    }
+
+  }
+
+  //---------------------------
+  .referral-container {
+    padding: 151px 0;
+  }
+
+  .referral-program {
+
+    &__title {
+      font-size: 50px;
+    }
+
+    &__description {
+      font-size: 18px;
+    }
+
+    &__programs {
+      &__replenishment,
+      &__percent {
+        padding: 18px;
+        span {
+          font-size: 14px;
+        }
+      }
+    }
+
+    &__partner-button {
+      font-size: 18px;
+      padding: 14px 30px;
+    }
+
+  }
+
+  //--------------------------
+  .personal-tour {
+    margin-top: 148px;
+
+    &__title {
+      font-size: 50px;
+    }
+
+    &__description {
+      margin-top: 10px;
+      font-size: 18px;
+    }
+
+    &__application {
+      margin-top: 24px;
+      font-size: 18px;
+    }
+
+  }
+
+  footer {
+    .promocode {
+      span {
+        font-size: 14px;
+      }
+      &__stick {
+        top: -72px;
+        left: -70px;
+        max-width: 56px;
+      }
+      button {
+        img {
+          max-width: 140px;
+        }
+      }
+    }
+  }
+
+  .footer {
+    padding: 0 37px 10px 20px;
+
+    &__copyright {
+      flex-direction: row;
+      align-items: center;
+      span {
+        font-size: 13px;
+      }
+      img {
+        max-width: 110px;
+      }
+    }
+
+    &__politica {
+      a {
+        font-size: 13px;
+      }
+    }
+
+    &__reference {
+      align-items: center;
+      a:first-child {
+        padding: 6px 16px;
+        font-size: 13px;
+      }
+      a:last-child {
+        width: 34px;
+        height: 34px;
+        img {
+          max-width: 34px;
+        }
+      }
+    }
+
+  }
+
+  .hidden-header {
+
+    &__content {
+      //padding: 18px 37px 18px 20px;
+      //
+      img {
+        max-width: 110px;
+        margin-bottom: 0;
+      }
+
+      button {
+        padding: 12px 28px;
+      }
+
+    }
+
+  }
+
+}
+
+@media (max-width: 960px) {
+
+  header, section, .footer, .hidden-header__content {
+    max-width: 640px;
+  }
+
+  footer .promocode {
+    margin-right: calc((100% - 640px) / 2 + 20px);
+  }
+
+  header {
+    padding: 0 20px;
+  }
+
+  .promo-container {
+    &__cat {
+      top: 52%;
+    }
+  }
+
+  .promo {
+    justify-content: center;
+
+    &__title {
+      margin-top: 0;
+      font-size: 50px;
+      img {
+        top: 50px;
+      }
+    }
+
+    &__description {
+      font-size: 18px;
+    }
+
+    &__create-account-button {
+      font-size: 18px;
+    }
+
+  }
+
+  .kotbot-description {
+    margin-top: 250px;
+  }
+
+  .personal-tour {
+    margin-top: 250px;
+
+    &__title {
+    }
+
+    &__description {
+    }
+
+    &__application {
+    }
+
+  }
+
+  .footer {
+    padding: 0 20px 10px 20px;
+
+    &__copyright {
+      width: 70%;
+      flex-direction: column;
+      align-items: flex-start;
+
+      br {
+        display: block;
+      }
+    }
+
+    &__politica {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__reference {
+      margin-top: 10px;
+    }
+  }
+
+  footer {
+    .promocode {
+      span {
+        left: -100px;
+      }
+      &__stick {
+        top: -40px;
+        left: -55px;
+        max-width: 36px;
+      }
+      button {
+        img {
+          max-width: 100px;
+        }
+      }
+    }
+  }
+
+  .hide {
+    top: -68px !important;
+  }
+
+  .hidden-header {
+
+    &__content {
+      padding: 18px 20px;
+    }
+
+  }
+
+}
+
+@media (max-width: 640px) {
+
+  header, section, .footer, .hidden-header__content {
+    max-width: 480px;
+  }
+
+  .skills-container {
+    min-height: 320px;
+    height: 45vh;
+  }
+
+  .kotbot-description {
+    margin-top: 80px;
+  }
+
+  footer .promocode {
+    margin-right: calc((100% - 480px) / 2 + 20px);
+  }
+
+  .promo-container {
+    &__cat {
+      top: 74%;
+      right: -34%;
+
+      img {
+        width: 360px;
+      }
+    }
+  }
+
+  .promo {
+
+    &__title {
+      margin-top: 0;
+      img {
+        top: 77%;
+      }
+
+      &__vk {
+        right: 42%;
+      }
+
+      &__yandex {
+        right: 33%;
+      }
+    }
+
+  }
+
+  .bonuses-origin img {
+    max-width: 100%;
+  }
+
+  .referral-program {
+
+    &__title {
+    }
+
+    &__description {
+    }
+
+    &__programs {
+      flex-direction: column;
+      gap: 20px 0;
+
+      &__replenishment,
+      &__percent {
+        width: fit-content;
+
+        img {
+
+        }
+
+        span {
+        }
+
+      }
+
+    }
+
+  }
+
+  .personal-tour {
+    margin-top: 85px;
+
+    &__title {
+    }
+
+    &__description {
+    }
+
+    &__application {
+    }
+
+  }
+
+  .footer {
+
+    &__copyright {
+
+      br {
+      }
+    }
+
+    &__politica {
+    }
+
+    &__reference {
+    }
+  }
+
+  footer {
+    .promocode {
+      span {
+        left: -84px;
+      }
+      &__stick {
+
+      }
+      button {
+        img {
+        }
+      }
+    }
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  header, section, .footer, .hidden-header__content {
+    max-width: 400px;
+  }
+
+  footer .promocode {
+    margin-right: calc((100% - 400px) / 2 + 20px);
+  }
+
+  .promo-container {
+    &__cat {
+      img {
+        width: 310px;
+      }
+    }
+  }
+
+  .promo {
+
+    &__title {
+      font-size: 35px;
+      img {
+        top: 6%;
+      }
+
+      &__vk {
+        right: 12%;
+      }
+
+      &__yandex {
+        right: 0;
+      }
+    }
+
+    &__description {
+      font-size: 16px;
+      margin-bottom: 40px;
+    }
+
+    &__create-account-button {
+      font-size: 16px;
+      padding: 15px 24px;
+    }
+
+  }
+
+  .how-it-works,
+  .kot-bonus,
+  .bonuses-origin {
+
+    &__title {
+      font-size: 35px;
+    }
+
+    &__description {
+      font-size: 16px;
+    }
+
+    img {
+      margin-top: 10px;
+    }
+
+  }
+
+  .how-it-works {
+    img {
+      max-width: 85px;
+    }
+  }
+
+  .kot-bonus {
+    margin: 50px auto;
+    img {
+      max-width: 90px;
+    }
+  }
+
+  .kotbot-description {
+
+    &__title, &__description {
+      font-size: 35px;
+    }
+  }
+
+  .referral-program {
+
+    &__title {
+      font-size: 35px;
+    }
+
+    &__description {
+      font-size: 16px;
+    }
+
+
+    &__partner-button {
+      font-size: 16px;
+    }
+
+  }
+
+  .personal-tour {
+
+    &__title {
+      font-size: 35px;
+    }
+
+    &__description {
+      font-size: 18px;
+    }
+
+    &__application {
+      padding: 15px 26px;
+      margin-top: 24px;
+      font-size: 16px;
+    }
+
+  }
+
+  .footer {
+    padding: 0 20px 120px 20px;
+
+    &__copyright {
+      width: 100%;
+      span {
+        font-size: 10px;
+      }
+      img {
+        max-width: 97px;
+      }
+    }
+
+    &__politica {
+    }
+
+    &__reference {
+    }
+  }
+
+  footer {
+    .promocode {
+      span {
+        left: -127px;
+        top: -43px;
+        font-size: 12px;
+      }
+      &__stick {
+        top: -5px;
+      }
+      button {
+        img {
+        }
+      }
+    }
+  }
+
+  .hide {
+    top: -23px !important;
+  }
+
+}
+
+@media (max-width: 400px) {
+
+  header, section, .footer, .hidden-header__content {
+    max-width: 320px;
+  }
+
+  header {
+    padding: 0 10px;
+  }
+
+  .hidden-header {
+
+    &__content {
+      padding: 18px 10px;
+    }
+
+  }
+
+  .promo {
+
+    &__title {
+      font-size: 35px;
+      img {
+        top: 73%;
+      }
+
+      &__vk {
+        right: 34%;
+      }
+
+      &__yandex {
+        right: 20%;
+      }
+    }
+
+    &__description {
+      font-size: 16px;
+      margin-bottom: 40px;
+    }
+
+    &__create-account-button {
+      font-size: 16px;
+      padding: 15px 24px;
+    }
+
+  }
+
+  footer .promocode {
+    margin-right: calc((100% - 320px) / 2 + 20px);
+  }
+
+  section {
+    padding: 0 10px;
+  }
+
+  .personal-tour {
+
+    &__title {
+      font-size: 30px;
+    }
+
+    &__description {
+      font-size: 14px;
+    }
+
+    &__application {
+      padding: 13px 22px;
+      margin-top: 16px;
+      font-size: 14px;
+    }
+
+  }
+
+  .footer {
+    padding: 0 20px 120px 20px;
+
+    &__copyright {
+      span {
+        font-size: 9px;
+      }
+      img {
+        max-width: 90px;
+      }
+    }
+
+    &__politica {
+      a {
+        font-size: 11px;
+      }
+    }
+
+    &__reference {
+      a:first-child {
+        font-size: 11px;
+      }
+      a:last-child {
+        width: 30px;
+        height: 30px;
+        img {
+          max-width: 30px;
+        }
+      }
+    }
+  }
+
+  footer {
+    .promocode {
+      span {
+        left: -116px;
+        top: -39px;
+        font-size: 12px;
+      }
+      &__stick {
+        top: -5px;
+      }
+      button {
+        img {
+        }
+      }
+    }
+  }
+
+  .hide {
+    top: -22px !important;
+  }
+
+
+}
+
