@@ -11,9 +11,9 @@
 
 <header class="header">
     <nav class="navigation">
-        <img src="https://static.tildacdn.com/tild3236-6331-4638-b763-343766303666/Group.svg" alt="">
+        <img src="assets/images/logo/main_logo.svg" alt="">
         <!-- Ссылки навигации или логотип -->
-        <button class="navigation__login-button">Войти</button>
+        <button onclick="return window.oneTapCallback(this)" class="navigation__login-button onetap-auth-outline">Войти</button>
     </nav>
 </header>
 
@@ -23,16 +23,17 @@
         <section class="promo">
             <h1 class="promo__title">
                 Дарим до 15% <br/> рекламного бюджета
-                <img class="promo__title__vk" src="https://static.tildacdn.com/tild6534-6637-4534-b662-363463633330/VK_Logo_Black__White.svg" alt="">
-                <img class="promo__title__yandex" src="https://static.tildacdn.com/tild3430-6337-4065-b639-353939386262/Frame_67.svg" alt="">
+                <img class="promo__title__vk" src="assets/images/logo/vk_logo.svg" alt="">
+                <img class="promo__title__yandex" src="assets/images/logo/yandex_logo.svg" alt="">
             </h1>
             <p class="promo__description">пополняй рекламные кабинеты и зарабатывай больше</p>
-            <button class="promo__create-account-button" onclick="return window.oneTapCallback(this)">Создать аккаунт через VK</button>
+            <button class="promo__create-account-button onetap-auth" onclick="return window.oneTapCallback(this)">Создать аккаунт через VK</button>
         </section>
         <div class="promo-container__cat">
-            <img src="https://static.tildacdn.com/tild3130-3936-4330-b462-333763393362/Group_42_1.svg" alt="">
-            <div class="cat__eye promo__cat__top-eye"></div>
-            <div class="cat__eye promo__cat__bottom-eye"></div>
+            <img src="assets/images/main-pictures/promo-cat.svg" alt="">
+            <div>
+                <img id="promo-eyes" src="assets/images/others/follow-eyes.svg" alt="">
+            </div>
         </div>
     </div>
 
@@ -44,7 +45,7 @@
                 а мы доначисляем вам бонусы. <br/>
                 От хорошего кота хорошему человеку
             </p>
-            <img class="animate-description" src="https://static.tildacdn.com/tild3365-6231-4736-b635-336136656464/Frame_41.svg" alt="">
+            <img class="animate-description" src="assets/images/main-pictures/how_it_work.svg" alt="">
         </section>
 
         <section class="kot-bonus">
@@ -54,7 +55,7 @@
                 который вы получаете за то, что пользуетесь нашим сервисом. <br/>
                 Кстати, 1 балл = 1 рублю
             </p>
-            <img class="animate-description" src="https://static.tildacdn.com/tild3631-6465-4836-b466-366466643830/Group_67_2.svg" alt="">
+            <img class="animate-description" src="assets/images/main-pictures/what_is_bonus.svg" alt="">
         </section>
 
         <section class="bonuses-origin" id="origin">
@@ -63,14 +64,14 @@
                 С нами работают 3500 таргетологов, <br/>
                 что позволяет получать лучшие цены от рекламных площадок
             </p>
-            <img class="animate-description" src="https://static.tildacdn.com/tild6665-6538-4165-a533-623237333064/Group_64.svg" alt="">
+            <img class="animate-description" src="assets/images/main-pictures/where_from_bonus.svg" alt="">
         </section>
     </div>
 
     <div class="container skills-container animate-scale">
         <section class="kotbot-description">
             <h2 class="kotbot-description__title">Это - kotbot. Удобный сервис</h2>
-            <p class="kotbot-description__description" id="writer"></p>
+            <p class="kotbot-description__description" id="printer"></p>
         </section>
     </div>
 
@@ -84,7 +85,7 @@
                 </p>
                 <div class="referral-program__programs">
                     <div class="referral-program__programs__replenishment">
-                        <img src="https://static.tildacdn.com/tild6331-3038-4235-b436-313433663664/Union_1.svg" alt=""
+                        <img src="assets/images/main-pictures/replishment.svg" alt=""
                              draggable="false">
                         <span>
                                 <b>500 руб. на баланс</b> вам и другу <br/>
@@ -92,7 +93,7 @@
                             </span>
                     </div>
                     <div class="referral-program__programs__percent">
-                        <img src="https://static.tildacdn.com/tild3663-3239-4562-b134-623834383862/Group_40.svg" alt="">
+                        <img src="assets/images/main-pictures/percent.svg" alt="">
                         <span>
                                 до <b>15% в месяц</b> <br/>
                                 от бюджета партнёров
@@ -100,7 +101,7 @@
                     </div>
                 </div>
                 <!-- Содержимое раздела -->
-                <button class="referral-program__partner-button" onclick="return window.oneTapCallback(this)">Стать партнером</button>
+                <button class="referral-program__partner-button onetap-auth-black" onclick="return window.oneTapCallback(this)">Стать партнером</button>
             </section>
         </div>
     </div>
@@ -119,7 +120,7 @@
     <div class="footer">
         <div class="footer__copyright">
             <span>© Kotbot, 2018-2023 Единый кабинет для рекламных бюджетов. <br/>Сервис проекта SkillHub</span>
-            <img src="https://static.tildacdn.com/tild3534-3735-4331-b334-333838643039/Frame_68.svg" alt="">
+            <img src="assets/images/main-pictures/cards.svg" alt="">
         </div>
         <div class="footer__politica">
             <a href="#">Пользовательское соглашение</a>
@@ -127,21 +128,21 @@
         </div>
         <div class="footer__reference">
             <a href="#">Написать нам</a>
-            <a href="#"><img src="https://static.tildacdn.com/tild3962-3632-4336-b530-363462643837/Frame_41_1.svg" alt=""></a>
+            <a href="#"><img src="assets/images/logo/telegram.svg" alt=""></a>
         </div>
     </div>
 
-    <div class="promocode">
-        <span id="code" class="hide">Погладь кота</span>
-        <img id="orientation" class="promocode__stick" src="https://static.tildacdn.com/tild3038-3061-4533-b334-666534343463/Subtract.svg" alt="">
-        <button id="stroke" onclick="getPromo()"><img src="./assets/images/cat_bottom.svg" alt=""></button>
+    <div class="promocode" id="code">
+        <span>Погладь кота</span>
+        <img class="promocode__stick" src="assets/images/others/stick.svg" alt="">
+        <button onclick="getCode()"><img src="assets/images/main-pictures/cat_bottom.svg" alt=""></button>
     </div>
 </footer>
 
 <div class="hidden-header">
     <div class="hidden-header__content">
-        <img src="https://static.tildacdn.com/tild3236-6331-4638-b763-343766303666/Group.svg" alt="">
-        <button>Войти</button>
+        <img src="assets/images/logo/main_logo.svg" alt="">
+        <button class="onetap-auth-outline" onclick="return window.oneTapCallback(this)">Войти</button>
     </div>
 </div>
 
@@ -150,6 +151,6 @@
 </div>
 
 <script src="script.js"></script>
-
+<script src="https://unpkg.com/@vkontakte/superappkit@1.57.0/dist/index-umd.js" async></script>
 </body>
 </html>

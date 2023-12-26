@@ -1,4 +1,4 @@
-@import "assets/museo/stylesheet.css";
+@import "assets/fonts/museo/stylesheet.css";
 * {
   box-sizing: border-box;
 }
@@ -7,6 +7,19 @@ body {
   margin: 0;
   padding: 0;
   position: relative;
+}
+
+iframe {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  overflow: hidden;
+  transform: scale(3);
+  opacity: 0.01;
+  filter: blur(20px);
 }
 
 button,
@@ -57,6 +70,8 @@ header {
   max-width: 128px;
 }
 .navigation__login-button {
+  position: relative;
+  overflow: hidden;
   border: 1px #ffffff solid;
   border-radius: 60px;
   background-color: transparent;
@@ -95,8 +110,19 @@ main {
   top: 41.6%;
   right: -237px;
 }
-.promo-container__cat img {
+.promo-container__cat > img {
   width: 678px;
+}
+.promo-container__cat div {
+  position: absolute;
+  z-index: 3;
+  top: 94px;
+  left: 183px;
+}
+.promo-container__cat div img {
+  position: absolute;
+  vertical-align: middle;
+  width: 52px;
 }
 
 .description-container {
@@ -186,6 +212,15 @@ section {
   background-color: #0063D4;
 }
 
+.how-it-works__title, .how-it-works__description, .how-it-works img,
+.kot-bonus__title,
+.kot-bonus__description,
+.kot-bonus img,
+.bonuses-origin__title,
+.bonuses-origin__description,
+.bonuses-origin img {
+  position: relative;
+}
 .how-it-works__title,
 .kot-bonus__title,
 .bonuses-origin__title {
@@ -232,8 +267,28 @@ section {
   max-width: 601px;
 }
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    top: -100px;
+  }
+  to {
+    opacity: 1;
+    top: 0;
+  }
+}
+.animate-description-start {
+  opacity: 0;
+}
+
+.animation-description {
+  animation-name: fadeInUp;
+  animation-duration: 1s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+
 .kotbot-description {
-  transform: scale(1);
   margin-top: 309px;
 }
 .kotbot-description__title, .kotbot-description__description {
@@ -246,9 +301,6 @@ section {
   margin-top: 8px;
 }
 
-.referral-program {
-  transform: scale(1);
-}
 .referral-program__title {
   color: #171717;
   font-size: 70px;
@@ -296,6 +348,8 @@ section {
   max-width: 164px;
 }
 .referral-program__partner-button {
+  position: relative;
+  overflow: hidden;
   margin-top: 30px;
   padding: 15.5px 30px;
   background-color: #171717;
@@ -312,7 +366,6 @@ section {
 }
 
 .personal-tour {
-  transform: scale(1);
   margin-top: 128px;
 }
 .personal-tour__title {
@@ -346,6 +399,22 @@ section {
   background-color: #0063D4;
 }
 
+@keyframes scaling {
+  to {
+    transform: scale(1);
+  }
+}
+.animate-scale-start {
+  transform: scale(0);
+}
+
+.animation-scale {
+  animation-name: scaling;
+  animation-duration: 0.5s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+
 footer {
   position: absolute;
   z-index: 2;
@@ -364,8 +433,8 @@ footer .promocode {
 footer .promocode span {
   display: inline-block;
   position: absolute;
-  opacity: 1;
-  top: -126px;
+  opacity: 0.3;
+  bottom: 208px;
   left: -139px;
   color: #ffffff;
   font-size: 16px;
@@ -373,7 +442,7 @@ footer .promocode span {
   font-family: "Museo Sans Cyrl 300", Arial, sans-serif;
   font-weight: 300;
 }
-footer .promocode__stick {
+footer .promocode > img {
   opacity: 0.3;
   top: -65px;
   left: -91px;
@@ -401,7 +470,52 @@ footer .promocode button img {
 footer .promocode button img:active {
   background-color: transparent;
 }
+footer .animate-stroke-start span {
+  opacity: 0;
+  left: -119px;
+}
+footer .animate-stroke-start > img {
+  opacity: 0;
+  left: -71px;
+}
+footer .animate-stroke-start button img {
+  top: 140px;
+}
+footer .animate-stroke span, footer .animate-stroke img, footer .animate-stroke button > img {
+  animation-duration: 1s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+footer .animate-stroke span {
+  animation-name: showLeftCode;
+  animation-delay: 2.5s;
+}
+footer .animate-stroke > img {
+  animation-name: showLeftStick;
+  animation-delay: 2s;
+}
+footer .animate-stroke button img {
+  animation-name: showDown;
+  animation-delay: 1.5s;
+}
 
+@keyframes showLeftCode {
+  to {
+    opacity: 0.3;
+    left: -139px;
+  }
+}
+@keyframes showLeftStick {
+  to {
+    opacity: 0.3;
+    left: -91px;
+  }
+}
+@keyframes showDown {
+  to {
+    top: 0;
+  }
+}
 .footer {
   position: relative;
   max-width: 1200px;
@@ -488,6 +602,8 @@ footer .promocode button img:active {
   max-width: 128px;
 }
 .hidden-header__content button {
+  position: relative;
+  overflow: hidden;
   border: 1px #ffffff solid;
   border-radius: 60px;
   background-color: transparent;
@@ -520,11 +636,6 @@ footer .promocode button img:active {
   transition: width 1s;
 }
 
-.hide {
-  top: -101px !important;
-  opacity: 0.3 !important;
-}
-
 @media (max-width: 1300px) {
   .promo-container__cat {
     top: 57%;
@@ -546,6 +657,13 @@ footer .promocode button img:active {
   }
   .promo-container__cat {
     top: 43%;
+  }
+  .promo-container__cat div {
+    top: 77px;
+    left: 150px;
+  }
+  .promo-container__cat div img {
+    width: 44px;
   }
   .promo-container__cat img {
     width: 563px;
@@ -573,6 +691,13 @@ footer .promocode button img:active {
   }
   .promo-container__cat img {
     width: 490px;
+  }
+  .promo-container__cat div {
+    top: 68px;
+    left: 132px;
+  }
+  .promo-container__cat div img {
+    width: 38px;
   }
   .promo__title {
     margin-top: 122px;
@@ -659,14 +784,24 @@ footer .promocode button img:active {
   }
   footer .promocode span {
     font-size: 14px;
+    bottom: 187px;
   }
-  footer .promocode__stick {
+  footer .promocode > img {
     top: -72px;
     left: -70px;
     max-width: 56px;
   }
   footer .promocode button img {
     max-width: 140px;
+  }
+  footer .animate-stroke-start > img {
+    left: -50px;
+  }
+  @keyframes showLeftStick {
+    to {
+      opacity: 0.3;
+      left: -70px;
+    }
   }
   .footer {
     padding: 0 37px 10px 20px;
@@ -760,9 +895,10 @@ footer .promocode button img:active {
     margin-top: 10px;
   }
   footer .promocode span {
+    bottom: 120px;
     left: -100px;
   }
-  footer .promocode__stick {
+  footer .promocode > img {
     top: -40px;
     left: -55px;
     max-width: 36px;
@@ -770,8 +906,23 @@ footer .promocode button img:active {
   footer .promocode button img {
     max-width: 100px;
   }
-  .hide {
-    top: -68px !important;
+  footer .animate-stroke-start span {
+    left: -80px;
+  }
+  footer .animate-stroke-start > img {
+    left: -35px;
+  }
+  @keyframes showLeftCode {
+    to {
+      opacity: 0.3;
+      left: -100px;
+    }
+  }
+  @keyframes showLeftStick {
+    to {
+      opacity: 0.3;
+      left: -55px;
+    }
   }
   .hidden-header__content {
     padding: 18px 20px;
@@ -797,6 +948,13 @@ footer .promocode button img:active {
   }
   .promo-container__cat img {
     width: 360px;
+  }
+  .promo-container__cat div {
+    top: 49px;
+    left: 96px;
+  }
+  .promo-container__cat div img {
+    width: 29px;
   }
   .promo__title {
     margin-top: 0;
@@ -826,6 +984,15 @@ footer .promocode button img:active {
   footer .promocode span {
     left: -84px;
   }
+  footer .animate-stroke-start span {
+    left: -64px;
+  }
+  @keyframes showLeftCode {
+    to {
+      opacity: 0.3;
+      left: -84px;
+    }
+  }
 }
 @media (max-width: 480px) {
   header, section, .footer, .hidden-header__content {
@@ -836,6 +1003,13 @@ footer .promocode button img:active {
   }
   .promo-container__cat img {
     width: 310px;
+  }
+  .promo-container__cat div {
+    top: 43px;
+    left: 83px;
+  }
+  .promo-container__cat div img {
+    width: 24px;
   }
   .promo__title {
     font-size: 35px;
@@ -917,15 +1091,21 @@ footer .promocode button img:active {
     max-width: 97px;
   }
   footer .promocode span {
-    left: -127px;
-    top: -43px;
+    left: -110px;
+    bottom: 81px;
     font-size: 12px;
   }
-  footer .promocode__stick {
+  footer .promocode > img {
     top: -5px;
   }
-  .hide {
-    top: -23px !important;
+  footer .animate-stroke-start span {
+    left: -90px;
+  }
+  @keyframes showLeftCode {
+    to {
+      opacity: 0.3;
+      left: -110px;
+    }
   }
 }
 @media (max-width: 400px) {
@@ -998,15 +1178,21 @@ footer .promocode button img:active {
     max-width: 30px;
   }
   footer .promocode span {
+    bottom: 78px;
     left: -116px;
-    top: -39px;
     font-size: 12px;
   }
-  footer .promocode__stick {
+  footer .promocode > img {
     top: -5px;
   }
-  .hide {
-    top: -22px !important;
+  .animate-stroke-start span {
+    left: -96px;
+  }
+  @keyframes showLeftCode {
+    to {
+      opacity: 0.3;
+      left: -116px;
+    }
   }
 }
 

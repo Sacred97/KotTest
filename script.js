@@ -1,246 +1,181 @@
-// document.addEventListener('mousemove', function(event) {
-//     const eyes = document.querySelectorAll('.cat__eye');
-//
-//     eyes.forEach((eye, index) => {
-//         // const { left, top, width, height } = eye.getBoundingClientRect();
-//         // console.log(`Eye ${index + 1}: left - ${left}, top - ${top}`)
-//         // const eyeCenterX = left + width / 2;
-//         // const eyeCenterY = top + height / 2;
-//         // const deltaX = event.clientX - eyeCenterX;
-//         // const deltaY = event.clientY - eyeCenterY;
-//         // const angle = Math.atan2(deltaY, deltaX);
-//         // const eyeRadius = width / 1; // Радиус, в пределах которого зрачок может двигаться
-//         // const eyeX = eyeRadius * Math.cos(angle);
-//         // const eyeY = eyeRadius * Math.sin(angle);
-//         //
-//         // eye.style.transform = `translate(${eyeX}px, ${eyeY}px)`;
-//     });
-// });
+// Анимация глаз следящих за курсором
+let eyes_promo = document.getElementById('promo-eyes')
+let eye_promo_rect = eyes_promo.getBoundingClientRect()
+let currentX = 0
+let currentY = 0
+let needRectUpdate = false
+let lerpFactor = 0.1 // Коэффициент сглаживания (Линейная интерполяция)
 
-// Получаем элементы один раз вне обработчика событий
-// const eyes = document.querySelectorAll('.cat__eye');
-//
-// let lastEyeX = 0;
-// let lastEyeY = 0;
-//
-// document.addEventListener('mousemove', (event) => {
-//     let moveEyes = true; // Флаг для определения, должны ли зрачки двигаться
-//
-//     eyes.forEach((eye) => {
-//         const boundingBox = eye.getBoundingClientRect();
-//         const eyeCenterX = boundingBox.left + boundingBox.width / 2;
-//         const eyeCenterY = boundingBox.top + boundingBox.height / 2;
-//         const deltaX = event.clientX - eyeCenterX;
-//         const deltaY = event.clientY - eyeCenterY;
-//         const distance = Math.sqrt(deltaX ** 2 + deltaY ** 2);
-//
-//         // Если курсор слишком близко к любому из глаз, не двигаем зрачки
-//         if (distance < 50) {
-//             moveEyes = false;
-//         }
-//
-//         // Если флаг moveEyes остается true, перемещаем зрачки
-//         const angle = Math.atan2(deltaY, deltaX);
-//         const eyeRadius = boundingBox.width;
-//         const eyeX = moveEyes ? eyeRadius * Math.cos(angle) : lastEyeX;
-//         const eyeY = moveEyes ? eyeRadius * Math.sin(angle) : lastEyeY;
-//
-//         if (moveEyes) {
-//             lastEyeX = eyeX;
-//             lastEyeY = eyeY;
-//         }
-//
-//         eye.style.transform = `translate(${eyeX}px, ${eyeY}px)`;
-//     });
-// });
+function updateEyesPosition(mouseX, mouseY) {
+    requestAnimationFrame(() => {
+        if (needRectUpdate) {
+            eye_promo_rect = eyes_promo.getBoundingClientRect()
+            needRectUpdate = false
+        }
+        const eyeX = eye_promo_rect.left + eye_promo_rect.width / 2;
+        const eyeY = eye_promo_rect.top + eye_promo_rect.height + window.scrollY / 2;
 
+        const deltaX = mouseX - eyeX;
+        const deltaY = mouseY - eyeY;
 
+        const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+        const minDistance = 20;
+
+        if (distance > minDistance) {
+            const angle = Math.atan2(deltaY, deltaX);
+
+            const eyeRadius = Math.min(eye_promo_rect.width, eye_promo_rect.height) / 2.7;
+            const eyeMoveX = eyeRadius * Math.cos(angle);
+            const eyeMoveY = eyeRadius * Math.sin(angle);
+
+            currentX += (eyeMoveX - currentX) * lerpFactor;
+            currentY += (eyeMoveY - currentY) * lerpFactor;
+
+            eyes_promo.style.transform = `translate(${currentX}px, ${currentY}px)`;
+        }
+    })
+}
+
+document.addEventListener('mousemove', (event) => {
+    updateEyesPosition(event.clientX, event.clientY + window.scrollY)
+});
+
+// Анимация печатания текста
+let container = document.getElementById('printer');
 let texts = ['Пополнение рекламного бюджета', 'который помогает с маркировкой', 'который добавляет бонусы', 'А что еще?'];
-let typingSpeed = 10; // скорость печатания (миллисекунды)
-let deletingSpeed = 20; // скорость удаления (миллисекунды)
-let pauseTime = 2000; // пауза перед удалением (миллисекунды)
-let container = document.getElementById('writer');
+let printingSpeed = 20;
+let deletingSpeed = 30;
+let pauseTime = 2000;
 let textIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
-function type() {
+function printText() {
     if (isDeleting) {
-        // Удаляем символы
         charIndex--;
     } else {
-        // Добавляем символы
         charIndex++;
     }
+    container.textContent = texts[textIndex].substring(0, charIndex);
 
-    // Показываем текущее состояние текста
-    let textToShow = texts[textIndex].substring(0, charIndex);
-    container.textContent = textToShow;
-
-    // Определяем следующий шаг
     if (!isDeleting && charIndex === texts[textIndex].length) {
         if (textIndex === texts.length - 1) return;
-        // Если текст полностью напечатан, начинаем удалять
         isDeleting = true;
-        setTimeout(type, pauseTime); // Пауза перед удалением
+        setTimeout(printText, pauseTime);
     } else if (isDeleting && charIndex === 0) {
-        // Если текст полностью удален
         isDeleting = false;
-        textIndex++; // Переходим к следующему тексту
+        textIndex++;
         if (textIndex === texts.length) {
-            // Если тексты закончились, не повторяем
             return;
         }
-        setTimeout(type, typingSpeed); // Пауза перед новым текстом
+        setTimeout(printText, printingSpeed);
     } else {
-        // Повторяем печать/удаление
-        let delay = isDeleting ? deletingSpeed : typingSpeed;
-        setTimeout(type, delay);
+        let delay = isDeleting ? deletingSpeed : printingSpeed;
+        setTimeout(printText, delay);
     }
 }
 
+// Прочие анимации, выпадение шапки, шкала прогрессии, анимации секций
 let $promo = document.querySelector('.promo-container')
 let $hiddenHeader = document.querySelector('.hidden-header')
 let $progressBar = document.getElementById('progress-bar')
 
-const descriptionEls = []
-let descriptionPlayed = false
-document.querySelectorAll('.animate-description')
-    .forEach(i => descriptionEls.push({$el: i, played: false}))
+const $descriptionEls = [...document.querySelectorAll('.animate-description')]
+const scalingEls = [...document.querySelectorAll('.animate-scale')]
+const observerOptions = {root: null, rootMargin: "0px", threshold: 0.1}
 
-const scalingEls = []
-document.querySelectorAll('.animate-scale')
-    .forEach(i => scalingEls
-        .push({$el: i, played: false, func: i.classList.contains('skills-container') ? type: ''}))
-
-let $stroke_btn = document.getElementById('stroke')
-let $stroke_orientation = document.getElementById('orientation')
-let $stroke_code = document.getElementById('code')
+let $stroke_el = document.getElementById('code')
+let $stroke_code = $stroke_el.querySelector('span')
 let strokePlayed = false
-
-function descriptionVisibility(element, isVisible) {
-    element.style.transition = isVisible ? 'opacity 1s ease 0.5s, top 1s ease 0.5s': ''
-    element.style.opacity = isVisible ? '1' : '0'
-    element.style.top = isVisible ? '0' : '-100px'
-}
-
-function checkAndAnimate(element, rect, played) {
-    if (!played && rect.top < window.innerHeight && rect.bottom >= 0) {
-        descriptionVisibility(element, true);
-        return true;
+function getCode() {
+    if ($stroke_code.innerHTML === 'Погладь кота') {
+        $stroke_code.innerHTML = 'Отлично! Дарю промокод GIVE500 -<br/>бонус на первое пополнение'
+        $stroke_code.style.cssText = 'opacity: 1 !important;'
+    } else {
+        $stroke_code.innerHTML = 'Погладь кота'
+        $stroke_code.style.opacity = ''
     }
-    return false;
 }
 
-function scaleAnimate(element, isScaling, func) {
-    element.style.transition = isScaling ? 'transform 0.5s' : ''
-    element.style.transform = isScaling ? 'scale(1)' : 'scale(0.7)'
-    if (func && isScaling) setTimeout(func, 1000)
-}
+function createObserver(element, classNameStart, classNameAnimation, callback, threshold) {
+    const observer$ = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            entry.target.classList.add(classNameStart)
+            if (entry.isIntersecting) {
+                entry.target.classList.add(classNameAnimation)
+                if (callback) callback()
+                observer.unobserve(entry.target)
+            }
+        }, {...observerOptions, threshold})
+    })
 
-function checkAndAnimateScale(element, rect, played, func) {
-    if (!played && rect.top < window.innerHeight && rect.bottom >= 0) {
-        scaleAnimate(element, true, func)
-        return true
-    }
-    scaleAnimate(element, false)
-    return false
+    observer$.observe(element)
 }
 
 document.addEventListener('DOMContentLoaded', function() {
 
-    const $firstDescRect = descriptionEls[0].$el.getBoundingClientRect()
-    if ($firstDescRect.top < window.innerHeight) {
-        descriptionEls.forEach(i => i.played = true)
-        descriptionPlayed = true
-    } else {
-        descriptionEls.forEach(i => descriptionVisibility(i.$el, false))
+    const firstDescRect = $descriptionEls[0].getBoundingClientRect()
+    if (firstDescRect.top > window.innerHeight) {
+        $descriptionEls.forEach(i => createObserver(
+            i,
+            'animate-description-start',
+            'animation-description',
+            null,
+            0.2
+            )
+        )
     }
 
     scalingEls.forEach(i => {
-        const rect = i.$el.getBoundingClientRect()
-        i.played = checkAndAnimateScale(i.$el, rect, i.played, i.func)
+        const rect = i.getBoundingClientRect()
+        if (rect.top < window.innerHeight && rect.bottom >= 0) {
+            if (i.classList.contains("skills-container")) printText()
+        } else {
+            createObserver(
+                i,
+                'animate-scale-start',
+                'animation-scale',
+                i.classList.contains("skills-container") ? printText : null,
+                0.3
+            )
+        }
     })
 
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 20) {
         strokePlayed = true
     } else {
-        $stroke_btn.disabled = true
-        $stroke_btn.querySelector('img').style.top = "140px"
-        $stroke_orientation.style.opacity = '0'
-        $stroke_orientation.style.left = `${parseInt(window.getComputedStyle($stroke_orientation).left) - 40}px`
-        $stroke_code.style.cssText += `opacity: 0 !important;`
-        $stroke_code.style.left = `${parseInt(window.getComputedStyle($stroke_code).left) - 40}px`
+        $stroke_el.classList.add('animate-stroke-start')
     }
 
 
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', () => {
+        needRectUpdate = true
+
         let height = $promo.offsetHeight;
 
         if (window.pageYOffset > height) {
-            $hiddenHeader.style.top = '0px';
+            $hiddenHeader.style.top = '0px'
         } else {
-            $hiddenHeader.style.top = '-90px';
+            $hiddenHeader.style.top = '-90px'
         }
 
         let scrollTotal = document.documentElement.scrollHeight - window.innerHeight;
         let scrollProgress = window.pageYOffset / scrollTotal * 100;
-        $progressBar.style.width = scrollProgress + "%";
+        $progressBar.style.width = scrollProgress + "%"
 
-        if (!descriptionPlayed) {
-            descriptionEls.forEach(i => {
-                const rect = i.$el.getBoundingClientRect()
-                i.played = checkAndAnimate(i.$el, rect, i.played)
-            })
-            descriptionPlayed = descriptionEls.every(item => item.played);
-        }
-
-        scalingEls.forEach(i => {
-            if (!i.played) {
-                const rect = i.$el.getBoundingClientRect()
-                i.played = checkAndAnimateScale(i.$el, rect, i.played, i.func)
-            }
-        })
-
-        if (!strokePlayed) if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-            let $img = $stroke_btn.querySelector('img')
-            $img.style.transition = "top 1s ease 1.5s"
-            $img.style.top = "0"
-            $stroke_orientation.style.transition = "left 1s ease 2s, opacity 1s ease 2s"
-            $stroke_orientation.style.opacity = ""
-            $stroke_orientation.style.left = ""
-            $stroke_code.style.transition = "left 1s ease 2.5s, opacity 1s ease 2.5s"
-            $stroke_code.style.opacity = ""
-            $stroke_code.style.left = ""
-            strokePlayed = true
-            setTimeout(() => {
-                $stroke_code.style.transition = ''
-                $stroke_btn.disabled = false
-            }, 3500)
+        if (!strokePlayed && (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 20) {
+            $stroke_el.classList.add('animate-stroke')
         }
     });
 
 });
 
-function getPromo() {
-    let $el = document.getElementById('code')
-    if ($el.innerHTML === 'Погладь кота') {
-        $el.innerHTML = 'Отлично! Дарю промокод GIVE500 -<br/>бонус на первое пополнение'
-        $el.classList.remove('hide')
-        return
-    }
-    $el.innerHTML = 'Погладь кота'
-    $el.classList.add('hide')
-}
 
+// Для ВК
 (($) => {
     const VK_APP_ID = 51804311;
 
     const q = (el) => document.querySelector(el);
     const delay = (ms) => new Promise((res) => setTimeout(res, ms));
-
-    const preload = (...images) =>
-        images.forEach((src) => ((preload.images[src] = new Image()), (preload.images[src].src = src)));
-    preload.images = {};
 
     const reachGoal = (type) => {
         console.log('reachGoal', type);
@@ -252,44 +187,12 @@ function getPromo() {
         }
     };
 
-    const generateQuerySelector = (el) => {
-        let str = `${el.tagName}${el.id != '' ? '#' + el.id : ''}`;
-        let uniq = generateUniqueRandomString(20);
-
-        if (el.className) {
-            let classes = el.className.split(/\s/);
-
-            for (let i = 0; i < classes.length; i++) {
-                str += '.' + classes[i];
-            }
-        }
-
-        el.setAttribute('data-uniqstr', uniq);
-        return `${str}[data-uniqstr="${uniq}"]`;
-    };
-
     const buildQuery = (params) => {
         const queryString = Object.keys(params)
             .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
             .join('&');
 
         return queryString;
-    };
-
-    const generateUniqueRandomString = (length) => {
-        let result = '';
-        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        const charactersLength = characters.length;
-
-        for (let i = 0; i < length; i++) {
-            result += characters.charAt(Math.floor(Math.random() * charactersLength));
-        }
-
-        // Add a timestamp to make the string unique
-        const timestamp = Date.now();
-        result += timestamp;
-
-        return result;
     };
 
     const loader = (status) => {
@@ -349,7 +252,7 @@ function getPromo() {
 						position: relative;
 						width: 185px;
 						height: 84px;
-						background-image: url(./assets/images/eye.svg);
+						background-image: url(assets/images/others/eye.svg);
 						background-repeat: no-repeat;
 						background-position: top center;
 					}
@@ -359,7 +262,7 @@ function getPromo() {
 						content: '';
 						width: 185px;
 						height: 84px;
-						background-image: url(./assets/images/ellipse.svg);
+						background-image: url(assets/images/others/ellipse.svg);
 						left: 0;
 						top: -1px;
 						background-repeat: no-repeat;
@@ -374,21 +277,22 @@ function getPromo() {
 					.eyes .eye2 {
 						z-index: 1;
 					}
-
-					.eyes .eye[data-eye="half"]:after {
-						top: 25px;
+					
+					@keyframes openEyes {
+					   0%, 10%, 40%, 70%, 80%, 90%, 100% { top: 55px; }
+					   20%, 30% { top: 35px; }
+					   50%, 60%  { top: 25px; }
+					   5%, 75% { top: 0px; }
 					}
-
-					.eyes .eye[data-eye="half2"]:after {
-						top: 35px;
-					}
-
-					.eyes .eye[data-eye="open"]:after {
-						top: 45px;
-					}
-
-					.eyes .eye[data-eye="open2"]:after {
-						top: 55px;
+					.eyes .eye:after {
+					    animation-name: openEyes;
+					    animation-duration: 5s;
+					    /*animation-timing-function: cubic-bezier(0.9, 0.01, 0.13, 1);*/
+					    /*animation-timing-function: cubic-bezier(0.55, 0.085, 0.68, 0.53);*/
+					    animation-timing-function: ease-in-out;
+					    animation-iteration-count: infinite;
+					    animation-delay: 1s;
+					    animation-direction: alternate;
 					}
 				</style>
 
@@ -413,31 +317,6 @@ function getPromo() {
 
             document.querySelectorAll('.eyes[data-eyes] .eye').forEach((eye) => {
                 eye.setAttribute('data-eye', 'close');
-            });
-        } else {
-            loader.setTimeout(280, () => {
-                q('.eyes[data-eyes] .eye1').setAttribute('data-eye', 'open');
-            });
-
-            loader.setTimeout(620, () => {
-                q('.eyes[data-eyes] .eye2').setAttribute('data-eye', 'open');
-            });
-
-            loader.setTimeout(1500, () => {
-                const eyes = document.querySelectorAll('.eyes[data-eyes] .eye');
-                const rand = (f, t) => Math.floor(Math.random() * (t - f + 1)) + f;
-
-                const blink = () => {
-                    let half = Math.random() < 0.5 ? 'half' : 'half2';
-                    let open = Math.random() < 0.5 ? 'open' : 'open2';
-                    let index = Math.random() < 0.5 ? 0 : 1;
-                    let eye = eyes[index];
-                    eye.setAttribute('data-eye', half);
-                    loader.setTimeout(rand(900, 2500), () => eye.setAttribute('data-eye', open));
-                    loader.setTimeout(rand(3000, 5000), blink);
-                };
-
-                blink();
             });
         }
     };
@@ -469,7 +348,8 @@ function getPromo() {
         let query = buildQuery({
             client_id: VK_APP_ID,
             display: 'page',
-            redirect_uri: `https://kotbot.black/api/onetap`,
+            // redirect_uri: `https://kotbot.black/api/onetap`,
+            redirectUrl: `https://kotbot.black/api/onetap`, //Вроде как по документации они изменили название параметра
             response_type: 'code',
             v: '5.131',
             scope: 65536,
@@ -523,7 +403,7 @@ function getPromo() {
 				transform: translateY(300px);
 				opacity: 0;
 				transition: transform 500ms ease, opacity 300ms ease;
-				background-image: url(./assets/images/letscall-header.svg);
+				background-image: url(assets/images/main-pictures/letscall-header.svg);
 				background-repeat: no-repeat;
 				background-position: center top;
 				background-color: #171717;
@@ -727,7 +607,7 @@ function getPromo() {
 			.want-to-talk-popup .loading .eye {
 				position: absolute;
 				height: 84px;
-				background-image: url(./assets/images/eye.svg);
+				background-image: url(assets/images/others/eye.svg);
 				background-repeat: no-repeat;
 				background-position: top center;
 				width: 100%;
@@ -740,7 +620,7 @@ function getPromo() {
 				content: '';
 				width: 100%;
 				height: 84px;
-				background-image: url(./assets/images/ellipse.svg);
+				background-image: url(assets/images/others/ellipse.svg);
 				left: 0;
 				top: -1px;
 				background-repeat: no-repeat;
@@ -775,7 +655,7 @@ function getPromo() {
 			}
 
 			.want-to-talk-popup .success .image {
-				background-image: url(./assets/images/sitting.svg);
+				background-image: url(assets/images/main-pictures/sitting.svg);
 				width: 100%;
 				height: 128px;
 				background-repeat: no-repeat;
@@ -987,11 +867,19 @@ function getPromo() {
 
     /* Want To Talk */
 
-    let script = document.createElement('script');
-    script.setAttribute('src', 'https://unpkg.com/@vkontakte/superappkit@1.57.0/dist/index-umd.js');
+    /* VK Supper Kit */
 
-    script.onload = () => {
+    function checkSdkReady() {
+        if (window.SuperAppKit) {
+            initializeApp()
+        } else {
+            setTimeout(checkSdkReady, 500)
+        }
+    }
+
+    function initializeApp() {
         const { Config, Connect, ConnectEvents } = window.SuperAppKit;
+
         const buttons = document.querySelectorAll('button.onetap-auth, button.onetap-auth-outline, button.onetap-auth-black');
 
         Config.init({
@@ -1041,39 +929,15 @@ function getPromo() {
                 },
             });
 
-            let selector = generateQuerySelector(button);
-            let style = document.createElement('style');
-
-            style.innerHTML = `
-					${selector} {
-						position: relative;
-						overflow: hidden;
-					}
-
-					${selector} iframe {
-						position: absolute;
-						top: 0;
-						left: 0;
-						width: 100% !important;
-						height: 100% !important;
-						overflow: hidden;
-						transform: scale(3);
-						opacity: 0.01;
-						filter: blur(20px);
-					}
-				`;
-
-            button.appendChild(style);
             button.appendChild(oneTapButton.getFrame());
-        });
-    };
 
-    document.head.appendChild(script);
+        })
+    }
 
-    preload(
-        'https://assets.kotbot.black/xd/eye.svg',
-        'https://assets.kotbot.black/xd/ellipse.svg',
-        'https://assets.kotbot.black/xd/sitting.svg',
-        'https://assets.kotbot.black/xd/letscall-header.svg'
-    );
+    checkSdkReady();
+
+    /* VK Supper Kit */
+
 })(window);
+// window.oneTapLoader(true)
+

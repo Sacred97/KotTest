@@ -1,4 +1,4 @@
-@import "assets/museo/stylesheet.css";
+@import "assets/fonts/museo/stylesheet.css";
 
 // Переменные
 $black: #171717;
@@ -15,6 +15,19 @@ body {
   margin: 0;
   padding: 0;
   position: relative;
+}
+
+iframe {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  overflow: hidden;
+  transform: scale(3);
+  opacity: 0.01;
+  filter: blur(20px);
 }
 
 button,
@@ -67,6 +80,8 @@ header {
   }
 
   &__login-button {
+    position: relative;
+    overflow: hidden;
     border: 1px #ffffff solid;
     border-radius: 60px;
     background-color: transparent;
@@ -107,12 +122,25 @@ main {
   &__cat {
     position: absolute;
     z-index: 2;
-    //top: calc(100vh - 63.5%);
     top: 41.6%;
     right: -237px;
 
-    img {
+    > img {
       width: 678px;
+    }
+
+    div {
+      position: absolute;
+      z-index: 3;
+      top: 94px;
+      left: 183px;
+
+      img {
+        position: absolute;
+        vertical-align: middle;
+        width: 52px;
+      }
+
     }
 
   }
@@ -223,6 +251,10 @@ section {
 .kot-bonus,
 .bonuses-origin {
 
+  &__title, &__description, img {
+    position: relative;
+  }
+
   &__title {
     width: fit-content;
     color: $black;
@@ -277,10 +309,30 @@ section {
 
 }
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    top: -100px;
+  }
+  to {
+    opacity: 1;
+    top: 0;
+  }
+}
+
+.animate-description-start {
+  opacity: 0;
+}
+
+.animation-description {
+  animation-name: fadeInUp;
+  animation-duration: 1s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+
 // Секция - описание kotbot
 .kotbot-description {
-  transform: scale(1);
-  //height: 100%;
   margin-top: 309px;
 
   &__title, &__description {
@@ -301,7 +353,6 @@ section {
 
 // Секция - Реферальная программа
 .referral-program {
-  transform: scale(1);
 
   &__title {
     color: $black;
@@ -376,6 +427,8 @@ section {
   }
 
   &__partner-button {
+    position: relative;
+    overflow: hidden;
     margin-top: 30px;
     padding: 15.5px 30px;
     background-color: $black;
@@ -397,7 +450,6 @@ section {
 
 // Секция - Персональная экскурсия
 .personal-tour {
-  transform: scale(1);
   margin-top: 128px;
 
   &__title {
@@ -436,6 +488,24 @@ section {
 
 }
 
+// Scale KeyFrames
+@keyframes scaling {
+  to {
+    transform: scale(1);
+  }
+}
+
+.animate-scale-start {
+  transform: scale(0);
+}
+
+.animation-scale {
+  animation-name: scaling;
+  animation-duration: 0.5s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+
 // Футер
 footer {
   position: absolute;
@@ -449,15 +519,14 @@ footer {
   .promocode {
     position: absolute;
     bottom: 0;
-    //bottom: -4px;
     right: 0;
     margin-right: calc((100% - 1200px) / 2);
 
     span {
       display: inline-block;
       position: absolute;
-      opacity: 1;
-      top: -126px;
+      opacity: 0.3;
+      bottom: 208px;
       left: -139px;
       color: #ffffff;
       font-size: 16px;
@@ -466,7 +535,7 @@ footer {
       font-weight: 300;
     }
 
-    &__stick {
+    > img {
       opacity: 0.3;
       top: -65px;
       left: -91px;
@@ -495,8 +564,75 @@ footer {
         }
       }
     }
+
   }
 
+  .animate-stroke-start {
+    span {
+        opacity: 0;
+        left: -119px;
+    }
+
+    > img {
+        opacity: 0;
+        left: -71px;
+    }
+
+    button {
+      img {
+          top: 140px;
+      }
+    }
+
+  }
+
+  .animate-stroke {
+
+    span, img, button > img {
+      animation-duration: 1s;
+      animation-timing-function: ease;
+      animation-fill-mode: forwards;
+    }
+
+    span {
+      animation-name: showLeftCode;
+      animation-delay: 2.5s;
+    }
+
+    > img {
+      animation-name: showLeftStick;
+      animation-delay: 2s;
+    }
+
+    button {
+      img {
+        animation-name: showDown;
+        animation-delay: 1.5s;
+      }
+    }
+
+  }
+
+}
+
+@keyframes showLeftCode {
+  to {
+    opacity: 0.3;
+    left: -139px;
+  }
+}
+
+@keyframes showLeftStick {
+  to {
+    opacity: 0.3;
+    left: -91px;
+  }
+}
+
+@keyframes showDown {
+  to {
+    top: 0;
+  }
 }
 
 .footer {
@@ -603,6 +739,8 @@ footer {
     }
 
     button {
+      position: relative;
+      overflow: hidden;
       border: 1px #ffffff solid;
       border-radius: 60px;
       background-color: transparent;
@@ -642,17 +780,13 @@ footer {
 
 }
 
-.hide {
-  top: -101px !important;
-  opacity: 0.3 !important;
-}
-
 // Адаптивный дизайн
 @media (max-width: 1300px) {
 
   .promo-container {
     &__cat {
       top: 57%;
+
     }
   }
 
@@ -682,6 +816,14 @@ footer {
   .promo-container {
     &__cat {
       top: 43%;
+
+      div {
+        top: 77px;
+        left: 150px;
+        img {
+          width: 44px;
+        }
+      }
 
       img {
         width: 563px;
@@ -730,6 +872,15 @@ footer {
       img {
         width: 490px;
       }
+
+      div {
+        top: 68px;
+        left: 132px;
+        img {
+          width: 38px;
+        }
+      }
+
     }
   }
 
@@ -858,20 +1009,40 @@ footer {
   }
 
   footer {
+
     .promocode {
+
       span {
         font-size: 14px;
+        bottom: 187px;
       }
-      &__stick {
+
+      > img {
         top: -72px;
         left: -70px;
         max-width: 56px;
       }
+
       button {
         img {
           max-width: 140px;
         }
       }
+
+    }
+
+    .animate-stroke-start {
+      > img {
+        left: -50px;
+      }
+    }
+
+  }
+
+  @keyframes showLeftStick {
+    to {
+      opacity: 0.3;
+      left: -70px;
     }
   }
 
@@ -1015,11 +1186,13 @@ footer {
   }
 
   footer {
+
     .promocode {
       span {
+        bottom: 120px;
         left: -100px;
       }
-      &__stick {
+      > img {
         top: -40px;
         left: -55px;
         max-width: 36px;
@@ -1030,10 +1203,30 @@ footer {
         }
       }
     }
+
+    .animate-stroke-start {
+      span {
+        left: -80px;
+      }
+      > img {
+        left: -35px;
+      }
+    }
+
   }
 
-  .hide {
-    top: -68px !important;
+  @keyframes showLeftCode {
+    to {
+      opacity: 0.3;
+      left: -100px;
+    }
+  }
+
+  @keyframes showLeftStick {
+    to {
+      opacity: 0.3;
+      left: -55px;
+    }
   }
 
   .hidden-header {
@@ -1073,6 +1266,15 @@ footer {
       img {
         width: 360px;
       }
+
+      div {
+        top: 49px;
+        left: 96px;
+        img {
+          width: 29px;
+        }
+      }
+
     }
   }
 
@@ -1158,17 +1360,25 @@ footer {
   }
 
   footer {
+
     .promocode {
       span {
         left: -84px;
       }
-      &__stick {
+    }
 
+    .animate-stroke-start {
+      span {
+        left: -64px;
       }
-      button {
-        img {
-        }
-      }
+    }
+
+  }
+
+  @keyframes showLeftCode {
+    to {
+      opacity: 0.3;
+      left: -84px;
     }
   }
 
@@ -1188,6 +1398,13 @@ footer {
     &__cat {
       img {
         width: 310px;
+      }
+      div {
+        top: 43px;
+        left: 83px;
+        img {
+          width: 24px;
+        }
       }
     }
   }
@@ -1315,25 +1532,36 @@ footer {
   }
 
   footer {
+
     .promocode {
+
       span {
-        left: -127px;
-        top: -43px;
+        left: -110px;
+        bottom: 81px;
         font-size: 12px;
       }
-      &__stick {
+
+      > img {
         top: -5px;
       }
-      button {
-        img {
-        }
+
+    }
+
+    .animate-stroke-start {
+      span {
+        left: -90px;
       }
+    }
+
+  }
+
+  @keyframes showLeftCode {
+    to {
+      opacity: 0.3;
+      left: -110px;
     }
   }
 
-  .hide {
-    top: -23px !important;
-  }
 
 }
 
@@ -1443,26 +1671,33 @@ footer {
   }
 
   footer {
+
     .promocode {
+
       span {
+        bottom: 78px;
         left: -116px;
-        top: -39px;
         font-size: 12px;
       }
-      &__stick {
+
+      > img {
         top: -5px;
       }
-      button {
-        img {
-        }
-      }
+    }
+
+  }
+
+  .animate-stroke-start {
+    span {
+      left: -96px;
     }
   }
 
-  .hide {
-    top: -22px !important;
+  @keyframes showLeftCode {
+    to {
+      opacity: 0.3;
+      left: -116px;
+    }
   }
 
-
 }
-
